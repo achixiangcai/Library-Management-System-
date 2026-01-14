@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}罚款记录{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">罚款查询与缴纳</h2>
+
+<form method="post" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="reader_id" class="form-control" placeholder="请输入读者ID（可选）" value="{{ reader_id or '' }}">
+        <button type="submit" class="btn btn-primary">查询</button>
+    </div>
+</form>
+
+{% if fines %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>罚款ID</th>
+            <th>金额</th>
+            <th>是否已缴</th>
+            <th>缴纳时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fine in fines %}
+        <tr>
+            <td>{{ fine.FineID }}</td>
+            <td>{{ fine.FineAmount }} 元</td>
+            <td>{{ '是' if fine.Paid else '否' }}</td>
+            <td>{{ fine.PaymentDate or '-' }}</td>
+            <td>
+                {% if not fine.Paid %}
+                <form method="post" action="{{ url_for('pay_fine', fine_id=fine.FineID) }}">
+                    <button type="submit" class="btn btn-success btn-sm">缴纳</button>
+                </form>
+                {% else %}
+                已缴纳
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-muted">暂无罚款记录</p>
+{% endif %}
+{% endblock %}

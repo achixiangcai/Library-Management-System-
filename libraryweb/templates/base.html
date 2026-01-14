@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}图书馆管理系统{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('index') }}">📚 图书馆系统</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('add_book') }}">添加新书</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('register_reader') }}">注册读者</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('borrow_book') }}">借书</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('return_book') }}">还书</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('unreturned_books') }}">未归还图书</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('fines') }}">罚款查询与缴纳</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('reservations') }}">预约记录查询</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-info mt-3">
+        {% for message in messages %}
+          <div>{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

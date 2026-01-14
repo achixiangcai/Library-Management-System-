@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>借阅图书</h2>
+<form method="post">
+  <div class="mb-3"><label class="form-label">读者ID</label><input type="text" name="reader_id" class="form-control" required></div>
+  <div class="mb-3"><label class="form-label">副本ID</label><input type="text" name="copy_id" class="form-control" required></div>
+  <button type="submit" class="btn btn-primary">借阅</button>
+</form>
+{% endblock %}

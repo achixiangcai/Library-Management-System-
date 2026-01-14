@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}预约记录{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">预约记录查询</h2>
+
+<form method="post" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="reader_id" class="form-control" placeholder="请输入读者ID（可选）" value="{{ reader_id or '' }}">
+        <button type="submit" class="btn btn-primary">查询</button>
+    </div>
+</form>
+
+{% if reservations %}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>预约ID</th>
+            <th>副本ID</th>
+            <th>预约日期</th>
+            <th>状态</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for r in reservations %}
+        <tr>
+            <td>{{ r.ReservationID }}</td>
+            <td>{{ r.CopyID }}</td>
+            <td>{{ r.ReservationDate }}</td>
+            <td>{{ r.Status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p class="text-muted">暂无预约记录</p>
+{% endif %}
+{% endblock %}

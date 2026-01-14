@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>未归还图书列表</h2>
+<table class="table table-bordered">
+  <thead><tr><th>借阅ID</th><th>读者ID</th><th>书名</th><th>副本ID</th><th>借阅日期</th><th>到期日期</th></tr></thead>
+  <tbody>
+    {% for book in books %}
+    <tr>
+      <td>{{ book.BorrowID }}</td>
+      <td>{{ book.ReaderID }}</td>
+      <td>{{ book.Title }}</td>
+      <td>{{ book.CopyID }}</td>
+      <td>{{ book.BorrowDate }}</td>
+      <td>{{ book.DueDate }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>添加新书</h2>
+<form method="post">
+  <div class="mb-3"><label class="form-label">书名</label><input type="text" name="title" class="form-control" required></div>
+  <div class="mb-3"><label class="form-label">作者ID</label><input type="text" name="author_id" class="form-control" required></div>
+  <div class="mb-3"><label class="form-label">类别ID</label><input type="text" name="type_id" class="form-control" required></div>
+  <div class="mb-3"><label class="form-label">出版社ID</label><input type="text" name="publisher_id" class="form-control" required></div>
+  <div class="mb-3"><label class="form-label">出版年份</label><input type="text" name="publish_year" class="form-control"></div>
+  <div class="mb-3"><label class="form-label">ISBN</label><input type="text" name="isbn" class="form-control"></div>
+  <div class="mb-3"><label class="form-label">价格</label><input type="text" name="price" class="form-control"></div>
+  <button type="submit" class="btn btn-primary">添加</button>
+</form>
+{% endblock %}
